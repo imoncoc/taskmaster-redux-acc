@@ -16,6 +16,8 @@ const TaskCard = ({task}) => {
       updatedStatus = "archive";
      }
 
+     console.log(task)
+
 
 
        return (
@@ -24,7 +26,7 @@ const TaskCard = ({task}) => {
              className={`text-lg font-semibold mb-3  ${
                task.priority === "high" ? "text-red-500" : ""
              } ${task.priority === "medium" ? "text-yellow-500" : ""} ${
-               task.priority === "low" ? "text-green-500" : ""
+               task.priority === "Low" ? "text-green-500" : ""
              }`}
            >
              {task?.title}

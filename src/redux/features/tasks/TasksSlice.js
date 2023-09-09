@@ -1,18 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    tasks: [
-        {
-            id: 1,
-            status: 'pending',
-            title: "Remove Button",
-            description: "We need a remove button in our task card. Make the button red and use Heroicon for task",
-            date: "2023-08-28",
-            assignedTo: "Mir Hussain",
-            priority: "high"
-        }
-    ],
-}
+  tasks: [
+    {
+      id: 1,
+      status: "pending",
+      title: "Remove Button",
+      description:
+        "We need a remove button in our task card. Make the button red and use Heroicon for task",
+      date: "2023-08-28",
+      assignedTo: "Mir Hussain",
+      priority: "high",
+    },
+  ],
+  userSpecificTasks: [],
+};
 
 const tasksSlice = createSlice({
     name: 'taskSlice',
@@ -29,16 +31,23 @@ const tasksSlice = createSlice({
         },
 
         removeTask: (state, {payload}) => {
-            state.tasks.filter((item) => item.id !== payload)
+           state.tasks = state.tasks.filter((item) => item.id !== payload)
         },
 
         updateStatus: (state, {payload}) => {
             const target = state.tasks.find(item => item.id === payload.id);
             target.status = payload.status
+        },
+
+        userTasks: (state, {payload}) => {
+            state.userSpecificTasks = state.tasks.filter(
+              (item) => item.assignedTo === payload
+            );
         }
     }
 })
 
-export const { addTask, removeTask, updateStatus } = tasksSlice.actions;
+export const { addTask, removeTask, updateStatus, userTasks, userSpecificTasks } =
+  tasksSlice.actions;
 
 export default tasksSlice.reducer;

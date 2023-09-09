@@ -1,1 +1,1 @@
-Redux 2.11 video 05:00 min
+Redux 3.03 video 05:00 min
